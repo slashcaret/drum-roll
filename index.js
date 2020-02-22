@@ -56,6 +56,7 @@ for (let i = 0; i < list.length; i++) {
     list[i].addEventListener("click", function () {
 
         var buttonPressed = this.textContent;
+        changeAnimation(buttonPressed);
         playSound(buttonPressed);
 
         // if (list[i].textContent == "w") {
@@ -72,5 +73,15 @@ for (let i = 0; i < list.length; i++) {
 }
 
 document.addEventListener("keydown", function (event) {
+    changeAnimation(event.key);
     playSound(event.key);
 });
+
+
+function changeAnimation(key) {
+    var clickedBtn = document.querySelector("." + key);
+    clickedBtn.classList.add("pressed");
+    setTimeout(function () {
+        clickedBtn.classList.remove("pressed");
+    }, 100);
+}
